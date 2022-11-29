@@ -1,0 +1,103 @@
+{% load static %}
+
+<html>
+<!DOCTYPE html>
+<head>
+  <title>Cart</title>
+    <!-- <link rel="stylesheet" href="cartpage.css"> -->
+    <link rel="stylesheet" href="{% static 'css/cart.css' %}">
+    <script src="{% static 'js/cartpage.js' %} " defer></script>
+    <link rel="icon" type="images/png" href="{% static 'favicons/Ecommerce.ico' %}"/>
+</head>
+<!-- CSS only -->
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fontawesome/4.7.0/css/font-awesome.min.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+
+<body>
+<div class="card">
+    <div class="row">
+        <div class="col-md-16 cart">
+            <div class="title">
+                <div class="row">
+                    <div class="col"><h4><b>Shopping Cart</b></h4></div>
+                    
+                </div>
+            </div>  
+            
+            <div class="row">
+              
+              {% for  key, q in mylist %}
+              
+                <div class="row border-top border-bottom">
+                  <div class="row main align-items-center">
+                    
+                    
+                    <div class="product">
+                      
+                      <div class="product-image">
+                        
+                        <img class="img-fluid" src="{{key.product_image.url }} " alt="product" style="transform: scale(1.5);margin-left: 20px; width:50px; height:auto;">
+                      </div>
+                      <div class="row col-2 fluid">{{key.product_name}}</div>
+                    <div class="product-price col-2">{{key.price}}</div>
+                    <div class="product-quantity col-2">
+                      <a href={% url 'decrease' user key.uid %}><button type="button" class="checkout" >-</button></a>
+                        {{q}}
+                        <a href={% url 'increase' user key.uid %}><button type="button" class="checkout" >+</button></a>
+                      {% comment %} <input type="number"  value="{{value}}" min="1"> {% endcomment %}
+                    </div>
+                    <div class="product-removal col-2">
+                      
+                      <a style="margin-bottom: 50px;"  href="{% url 'delete_cart_item' user key.uid %}" ><button style="padding-bottom: 0px;"> Remove</button></a>
+                    </div>
+                    <div class="product-line-price col-2">
+                      
+                      {% widthratio key.price 1 q %}
+                      
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+
+
+              
+                  <!---->
+<!---->
+               </div>
+               <div class="back-to-shop"><a href="{% url 'user' user %}">&leftarrow;<span class="text-muted">Back to shop</span></div></a>
+            </div> 
+            </div>
+            
+                    <!---->
+  
+        </div> 
+        </div> 
+        <div class="col-4 summary" >
+            <div><h5><b>Summary</b></h5></div>
+            <hr>
+            
+            <form>
+                <p>SHIPPING</p>
+                <select><option class="text-muted">Cash-on-Delivery </option></select>
+            </form>
+            
+            
+            <div class="totals">
+    <div class="totals-item">
+      <label>{{sum}}</label>
+      <div class="totals-value"></div>
+    </div>
+
+      <a href={% url 'mail' user %}>
+    <button type="button" class="checkout" >Checkout</button>
+    </a>
+
+  </div>
+
+  <script>
+    console.log(document.getElementsByName('quantity'))
+</script>
+</body>
+</html>

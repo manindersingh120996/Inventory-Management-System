@@ -1,0 +1,321 @@
+
+{% load static %}
+<head>
+<link rel="icon" type="images/png" href="{% static 'favicons/Ecommerce.ico' %}"/>
+
+<style>
+  
+    * {
+      box-sizing: border-box;
+    }
+    
+    body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: -webkit-linear-gradient(-135deg, #86c850, #37d3be);
+    background: -o-linear-gradient(-135deg, #86c850, #37d3be);
+    background: -moz-linear-gradient(-135deg, #86c850, #37d3be);
+    background: linear-gradient(-135deg, #86c850, #37d3be);
+    }
+    
+    /* Float four columns side by side */
+    .column {
+      float: left;
+      width: 25%;
+      padding: 0 10px;
+    }
+    
+    /* Remove extra left and right margins, due to padding */
+    .row {margin: 0 -5px;}
+    
+    /* Clear floats after the columns */
+    .row:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+    
+    /* Responsive columns */
+    @media screen and (max-width: 600px) {
+      .column {
+        width: 100%;
+        display: block;
+        margin-bottom: 20px;
+      }
+    }
+    
+    /* Style the counter cards */
+    .card {
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+      padding-top: 10px;
+      padding-right: 8px;
+      padding-bottom: 10px;
+      padding-left: 8px;
+      text-align: center;
+      background-color: #f1f1f1;
+      justify-content: center;
+      align-items: center;
+      width: 100%;  
+      min-height: 35vh;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: flex;
+      flex-wrap: wrap;
+      overflow: visible;
+      z-index: -1;
+      position: relative;
+    }
+    .action {
+    position: fixed;
+    top: 20px;
+    right: 30px;
+    }
+
+  .action .profile {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  
+  .action .profile img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .action .menu {
+    position: fixed;
+    top: 120px;
+    right: 18px;
+    padding: 10px 20px;
+    background: #86c850, #37d3be;
+    width: 190px;
+    box-sizing: 0 5px 25px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    transition: 0.5s;
+    visibility: hidden;
+    opacity: 0;
+  }
+  
+  .action .menu.active {
+    top: 80px;
+    visibility: visible;
+    opacity: 1;
+    z-index: 5;
+    position: fixed;
+    padding-left:-50px !important;
+    {% comment %} background-color: skyblue; {% endcomment %}
+    right: 60px;
+  }
+  
+  .action .menu::before {
+    content: "";
+    position: absolute;
+    top: 1px;
+    right: 40px;
+    width: 20px;
+    height: 20px;
+    background: #86c850, #37d3be;
+    transform: rotate(45deg);
+  }
+  
+  .action .menu h3 {
+    width: 100%;
+    text-align: center;
+    font-size: 18px;
+    padding: 20px 0;
+    font-weight: 500;
+    color: rgb(40, 240, 53);
+    line-height: 1.5em;
+  }
+  
+  .action .menu h3 span {
+    font-size: 14px;
+    color: #a63737;
+    font-weight: 300;
+  }
+  
+  .action .menu ul li {
+    list-style: none;
+    padding-left: -20px !important;
+    border-top: 1px solid rgba(252, 252, 252, 0.05);
+    display: flex;
+    align-items: center;
+  }
+  
+  .action .menu ul li img {
+    max-width: 20px;
+    margin-right: 10px;
+    opacity: 0.5;
+    transition: 0.5s;
+  }
+  
+  .action .menu ul li:hover img {
+    opacity: 1;
+  }
+  
+  .action .menu ul li a {
+    display: inline-block;
+    text-decoration: none;
+    color: #555;
+    font-weight: 500;
+    transition: 0.5s;
+  }
+  
+  .action .menu ul li:hover a {
+    color: #ff5d94;
+  }
+  ul {
+  list-style-type: none;
+  padding: 0 !important; 
+  overflow: hidden;
+  background-color: rgb(255, 255, 255);
+  margin-left: 0px;
+  margin-top: 15px;
+  border-radius: 20px
+  }
+
+  li {
+    float: left;
+    margin-top:13px;margin-left:50px
+  }
+
+li a {
+  display: block;
+  color: rgb(0, 0, 0);
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: black;
+}
+
+#popoverB{
+  position:absolute;
+  list-style-type: none;
+padding: 0 !important;
+overflow: hidden;
+background-color: rgb(255, 255, 255);
+margin-left: -39px;
+margin-top: 155px;
+border-radius: 20px
+}
+.modal {
+display: none; /* Hidden by default */
+position: fixed; /* Stay in place */
+z-index: 1; /* Sit on top */
+padding-top: 100px;  /*Location of the box */
+left: 0;
+top: 0;
+width:100%; /* Full width */
+height: 100%; /* Full height */
+overflow: auto; /* Enable scroll if needed */
+background-color: rgb(0,0,0); /* Fallback color */
+background-color: rgba(0,0,0,0.7); /* Black w/ opacity */
+}
+
+/* Modal Content */
+
+.modal-content {
+background-color: #fefefe;
+margin: auto;
+padding: 20px;
+border: 1px solid #888;
+width: 40%;
+}
+
+/* The Close Button */
+.close {
+color: #392020;
+float: right;
+font-size: 28px;
+font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+color: #000;
+text-decoration: none;
+cursor: pointer;
+}
+</style>
+
+</head>
+
+<body>
+<div class="header-area">
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="user-menu">
+            </div>
+        </div>
+    </div>
+</div>
+</div> <!-- End header area -->
+  <ul style="margin-top:1rem">
+    <li><h4 style="color: rgb(0, 0, 0);margin-top: 10px;margin-bottom: 1.25rem;">Electo High Store</h4></li>
+    <li><a class="active" href={% url 'admin' user.email%}>Home</a></li>
+    <li><a class="active" href={% url 'edit_profile_admin' user%}>Edit Profile</a></li>
+    <li><a href="#contact" id="myBtn">Contact</a></li>
+<div id="myModal" class="modal">
+<div class="modal-content">
+<span class="close">&times;</span>
+<h4>Any Queries,Contact to:</h4>
+<p>Saurabh Singh</p>
+<p>Sai Kiriti</p>
+<p>Maninder Singh</p>
+<p>Pallavi</p>
+<p>Tarun Bhaskaran</p>
+</p>
+</div>
+</div>
+<script>
+var modal = document.getElementById("myModal");
+var btn = document.getElementById("myBtn");
+var span = document.getElementsByClassName("close")[0];
+btn.onclick = function() {
+modal.style.display = "block";
+}
+span.onclick = function() {
+modal.style.display = "none";
+}
+window.onclick = function(event) {
+if (event.target == modal) {
+modal.style.display = "none";
+}
+}
+</script>
+  </ul>
+  <div class="action">
+    <div class="profile" onclick="menuToggle();">
+      <img src="{% static 'images/User-Profile-PNG-High-Quality-Image.png'%}" />
+    </div>
+    <div style="display:flex;justify-content: center;align-items: center;" class="menu">
+      <ul id="popoverB">
+          <li><a href="#"><i class="fa fa-user"></i>Admin:-{{user}}</a></li>
+        <li>
+          <img src="{% static 'images/logout.png' %}" /><a style="width: 200px;" href="{% url 'logout' %}">Logout</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <script>
+    function menuToggle() {
+      const toggleMenu = document.querySelector(".menu");
+      toggleMenu.classList.toggle("active");
+    }
+  </script>
+</body>
+  {% block start %}
+
+  {% endblock %}

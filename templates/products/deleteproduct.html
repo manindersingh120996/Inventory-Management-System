@@ -1,0 +1,20 @@
+
+{% extends "base_ui/base.html" %}
+{% load static %}
+
+{% block start %}
+
+<div class="main">
+    <!-- Create a Form -->
+    <form method="POST" >
+        <!-- Security token by Django -->
+        {% csrf_token %}
+        {% include "base_ui/alert.html"%}
+        <h1>Are you want to delete {{prod.product_name}} item ?</h1>
+        <button type="submit" class= "btn btn-warning btn-sm">Yes</button>
+        <br>
+        <a href="/" class= "btn btn-primary btn-sm">Cancel </a>
+    </form>
+</div>
+{% endblock %}
+    

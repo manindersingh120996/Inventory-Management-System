@@ -1,0 +1,65 @@
+{% extends "base_ui/usernavbar.html" %}
+
+{% load static %}
+
+{% block start %}
+<head>
+    <title>User home</title>
+</head>
+
+
+<div class="promo-area">
+    <div class="zigzag-bottom"></div>
+    <div class="container">
+        <div class="row">
+            {% comment %} {{categories}} {% endcomment %}
+                {% for category in categories %}
+                {% comment %} <h1>  </h1> {% endcomment %}
+                
+            <div class="col-md-3 col-sm-6">
+                <div class="single-promo promo1">
+                <a href="{% url 'categoryView' user category.slug %}">
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <div class="container">
+                                    <img style="max-width:150px" class="img-fluid " src="{% static 'images/Productsicon.jpg' %}" alt="add-product">
+                                </div>  
+                                <button type="button" class="btn btn-success" style="margin-top:15px">{{category}}</button>                         
+                            </div>
+                        </div>
+                </a>
+                </div>
+            </div>
+        
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div> <!-- End promo area -->
+
+
+<!-- Latest jQuery form server -->
+<script src="https://code.jquery.com/jquery.min.js"></script>
+
+<!-- Bootstrap JS form CDN -->
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+<!-- jQuery sticky menu -->
+<script src="{% static 'js/owl.carousel.min.js' %}"></script>
+<script src="{% static 'js/jquery.sticky.js' %}"></script>
+
+<!-- jQuery easing -->
+<script src="{% static 'js/jquery.easing.1.3.min.js' %}"></script>
+
+<!-- Main Script -->
+<script src="{% static 'js/main.js' %}"></script>
+
+<!-- Slider -->
+<script type="text/javascript" src="{% static 'js/bxslider.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/script.slider.js' %}"></script>
+</body>
+</html>
+
+
+
+{% endblock %}

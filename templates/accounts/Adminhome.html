@@ -1,0 +1,91 @@
+{% extends "base_ui/adminnavbar.html" %}
+{% block start %}
+{% load static %}
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+      rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw=="crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css" integrity="sha384-xeJqLiuOvjUBq3iGOjvSQSIlwrpqjSHXpduPd6rQpuiM3f5/ijby8pCsnbu5S81n" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="icon" type="images/png" href="{% static 'favicons/Ecommerce.ico' %}"/>
+    <title>Admin Home</title>
+
+        <div class="container">
+            <div class="row mt-3">
+                <div class="col-md-4">
+                  <a href={% url 'list_category' user %}>
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <div class="container">
+                                <img style="max-width:150px" class="img-fluid rounded-circle" src="{% static 'images/Add products.png'%}" alt="add-product">
+                            </div>
+                            <button type="button" class="btn btn-success" style="margin-top:15px">Catergories</button>
+                        </div>
+                    </div>
+                  </a>
+                </div>
+                <div class="col-md-4">
+                  <a href="{% url 'view_admin_profile' user %}">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <div class="container">
+                                <img style="max-width:150px" class="img-fluid rounded-circle" src="{% static 'images/User-Profile-PNG-High-Quality-Image.png'%}" alt="add-product">
+                            </div>
+                            <button type="button" class="btn btn-primary" style="margin-top:15px">My Account</button>
+                        </div>
+                    </div>
+                  </a>
+                </div>
+                <div class="col-md-4">
+                  <a href="{% url 'manage_order' user %}">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <div class="container">
+                                <img style="max-width:150px" class="img-fluid rounded-circle" src="{% static 'images/Add products.png'%}" alt="add-product">
+                            </div>
+                            <button type="button" class="btn btn-success" style="margin-top:15px">Manage Orders</button>
+                        </div>
+                    </div>
+                  </a>
+                </div>
+                <div class="row mt-3">                  
+                    <div class="col-md-6">
+                      <a href="{% url 'add_product' user %}">
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <div class="container">
+                                    <img style="max-width:150px" class="img-fluid rounded-circle" src="{% static 'images/Add products.png'%}" alt="add-product">
+                                </div>  
+                                <button type="button" class="btn btn-success" style="margin-top:15px">Add Products</button>                         
+                            </div>
+                        </div>
+                      </a>
+                    </div>
+                  
+                    <div class="col-md-6">
+                      <a href="{% url 'list_product' user %}">
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <div class="container">
+                                    <img style="max-width:150px" class="img-fluid rounded-circle" src="{% static 'images/Add products.png'%}" alt="add-product">
+                                </div>
+                                <button type="button" class="btn btn-success" style="margin-top:15px">Products List</button>
+                            </div>
+                        </div>
+                      </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,122 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Registration</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="icon" type="image/png" href="{% static 'favicons/Ecommerce.ico' %}"/>
+    
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+    
+
+</head>
+<body>
+    <div class="limiter">
+        <div class="container-login100">
+            <div class="wrap-login100">
+                <div style="position:absolute;margin-left:203px;margin-top: -100px;"class="header">
+                    <img class="logo1" src="{% static 'favicons/Ecommerce.ico' %}"alt="IMG">
+                        <span class="company-title">
+                            INVENTORY MANAGEMENT SYSTEM
+                        </span>
+                </div>
+                <div class="login100-pic js-tilt" data-tilt>
+                    <img src="{% static 'images/Logo.png' %}" alt="IMG">
+                </div>
+
+
+                <form class="login100-form validate-form" method="POST">                
+                    {% csrf_token %}
+                    <span class="login100-form-title1">
+                        REGISTER/SIGN UP
+                    </span>
+
+
+                    <div class="wrap-input100 validate-input1" data-validate = "User Name">
+                        <input class="input100" type="text" name="firstname" placeholder="First Name" required>
+                        <span class="focus-input100"></span>
+                        <span class="symbol-input100">
+                            <i class="fa-solid fa-user"></i>
+                        </span>
+                    </div>
+                    <div class="wrap-input100 validate-input1" data-validate = "User Name">
+                        <input class="input100" type="text" name="lastname" placeholder="Last Name" required>
+                        <span class="focus-input100"></span>
+                        <span class="symbol-input100">
+                            <i class="fa-solid fa-user"></i>
+                        </span>
+                    </div>
+                
+                    <div class="wrap-input100 validate-input1" data-validate = "contact">
+                        <input class="input100" type="text" name="contact" placeholder="Mobile number" required>
+                        <span class="focus-input100"></span>
+                        <span class="symbol-input100">
+                            <i class="fa-solid fa-phone"></i>
+                        </span>
+                    </div>
+
+
+                    <div class="wrap-input100 validate-input1" data-validate = "Location">
+                        <input class="input100" type="text" name="address" placeholder="Address" required>
+                        <span class="focus-input100"></span>
+                        <span class="symbol-input100">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </span>
+                    </div>                    
+
+
+                    <div class="wrap-input100 validate-input1" data-validate = "Valid email is required: ex@abc.xyz">
+                        <input class="input100" type="text" name="email" placeholder="Email" required>
+                        <span class="focus-input100"></span>
+                        <span class="symbol-input100">
+                            <i class="fa fa-envelope" aria-hidden="true"></i>
+                        </span>
+                    </div>
+
+                    <div class="wrap-input100 validate-input1" data-validate = "Password is required">
+                        <input class="input100" type="password" id="myInput" name="password" placeholder="password" required>
+                        <span class="focus-input100"></span>
+                        <span class="symbol-input100">
+                            <i class="fa fa-lock" aria-hidden="true"></i>
+                        </span>
+                        
+                    </div>
+
+                    <div class="wrap-input100 validate-input1" data-validate = "Password is required">
+                        <input style="margin-top: 30px;margin-left: 9px;"type="checkbox" style="position:absolute" onclick="myFunction()">
+                        <span class="show-password">Show Password</span>                                  
+                    </div>
+                 
+                    <div class="container-login100-form-btn">
+                        <button type="submit" class="login100-form-btn">
+                            Register
+                        </button>
+                    </div>
+
+                    <div class="text-center p-t-40">
+                        <a class="txt2" href="{% url 'login' %}">
+                            Already a user? Login
+                            <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        function myFunction() {
+        var x = document.getElementById("myInput");
+        if (x.type === "password") {
+            x.type = "text";
+        } else {
+            x.type = "password";
+        }
+        }
+        </script>
+</body>
+
+     
